@@ -1,5 +1,5 @@
 
-export const validateFormFields = (formFields) => {
+const validateFormFields = (formFields) => {
     if (formFields.length === 0) {
         return "* Please add at least one field\n"
     }
@@ -11,7 +11,7 @@ export const validateFormFields = (formFields) => {
     return true;
 }
 
-export const validateFormName = (formName) => {
+const validateFormName = (formName) => {
     if (formName === '') {
         return "* Please Enter a Valid form name\n";
     }
