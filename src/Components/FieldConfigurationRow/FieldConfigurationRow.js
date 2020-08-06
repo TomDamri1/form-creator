@@ -15,7 +15,7 @@ const FieldConfigurationRow = (props) => {
     }
     useEffect(() => {
         props.onChange(rowState.id, rowState)
-    }, [rowState])
+    }, [rowState, props])
 
     return (
         <div className="row" style={styles.row}>
