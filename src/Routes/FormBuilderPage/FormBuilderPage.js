@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import FieldConfigurationRow from '../../Components/FieldConfigurationRow/FieldConfigurationRow';
-import { Button, TextField, createStyles } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 import { validateForm } from "./FormBuilderFunctions";
 import styles from "./FormBuilderStyles";
 
