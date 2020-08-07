@@ -20,6 +20,7 @@ const FieldConfigurationRow = (props) => {
     return (
         <div className="row" style={styles.row}>
             <TextField
+                required
                 id="fieldLabel"
                 name="fieldLabel"
                 label="Field Label"
@@ -29,6 +30,7 @@ const FieldConfigurationRow = (props) => {
                 style={styles.rowItem}
             />
             <TextField
+                required
                 id="inputName"
                 name="inputName"
                 label="Input Name"
