@@ -29,18 +29,19 @@ const FormBuilderPage = (props) => {
         alert(`id to delete : ${id}`)
         setFormFields(formFields.filter(field => field.id !== id))
     };
-    const handleSubmit = () => {
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
         const formValidationStatus = validateForm(formName, formFields)
         console.log(formValidationStatus)
-        if (formValidationStatus.status === false){
+        if (formValidationStatus.status === false) {
             alert(formValidationStatus.message);
             return;
         }
         //return the server the next object:
         const form = {
-                name: formName,
-                fields: formFields,
-            }
+            name: formName,
+            fields: formFields,
+        }
         alert(JSON.stringify(form))
     }
 
@@ -56,7 +57,9 @@ const FormBuilderPage = (props) => {
     return (
         <div>
             <h1>Form Builder Page</h1>
+            <form onSubmit={(evt) => handleSubmit(evt)}>
             <TextField
+                required
                 id="FormName"
                 label="Form Name"
                 color="primary"
@@ -76,14 +79,15 @@ const FormBuilderPage = (props) => {
                 Add Field
             </Button>
             <Button
+                type="submit"
                 variant="contained"
                 color="primary"
-                onClick={() => handleSubmit()}
                 style={styles.button}
 
             >
                 Submit
             </Button>
+            </form>
         </div>
     )
 }
