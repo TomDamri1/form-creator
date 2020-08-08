@@ -3,6 +3,7 @@ import FieldConfigurationRow from '../../Components/FieldConfigurationRow/FieldC
 import { Button, TextField } from '@material-ui/core';
 import { validateForm } from "./FormBuilderFunctions";
 import styles from "./FormBuilderStyles";
+import { publishFormToServer } from '../../functions/ServerConnectionFunctions';
 
 
 const FormBuilderPage = (props) => {
@@ -29,7 +30,7 @@ const FormBuilderPage = (props) => {
         alert(`id to delete : ${id}`)
         setFormFields(formFields.filter(field => field.id !== id))
     };
-    const handleSubmit = (evt) => {
+    const handleSubmit = async (evt) => {
         evt.preventDefault();
         const formValidationStatus = validateForm(formName, formFields)
         console.log(formValidationStatus)
@@ -42,7 +43,8 @@ const FormBuilderPage = (props) => {
             name: formName,
             fields: formFields,
         }
-        alert(JSON.stringify(form))
+        const response = await publishFormToServer(form);
+        alert(response);
     }
 
     const visualFields = formFields.map(field =>
