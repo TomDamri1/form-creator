@@ -11,7 +11,7 @@ const FieldConfigurationRow = (props) => {
     })
     const hanldeChange = (evt) => {
         console.log(evt);
-        setRowState({ ...rowState, [evt.target.name]: [evt.target.value] })
+        setRowState({ ...rowState, [evt.target.name]: evt.target.value })
     }
     useEffect(() => {
         props.onChange(rowState.id, rowState)
