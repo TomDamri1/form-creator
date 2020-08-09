@@ -11,6 +11,6 @@ for using the application :
   2.2 Use the command  `npm start`  
   **Notice - The server won't work right now, you missing mongoose configuration file**  
 3. Run the client - in the client directory:  
-  2.1 Use the command  `npm install`  
-  2.2 Use the command  `npm start`  
+  3.1 Use the command  `npm install`  
+  3.2 Use the command  `npm start`  
 
