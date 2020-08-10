@@ -10,7 +10,7 @@ const getForm = require('./routes/getForm');
 const postForm = require('./routes/postForm');
 
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(bodyParser.json());
@@ -30,7 +30,7 @@ catch (error) {
 }
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'))
+    app.use(express.static('client/build'));
 }
 
 
