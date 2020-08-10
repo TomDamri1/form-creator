@@ -16,18 +16,18 @@ export default (data) => {
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.answers.length}</TableCell>
                 <TableCell>
-                    <Button>
-                        <NavLink exact to={`/submit-form/${row._id}`} style={styles.rowButton}>
-                            <Create color="primary"/>
-                        </NavLink>
-                    </Button>
+                    <NavLink exact to={`/submit-form/${row._id}`} style={styles.rowButton}>
+                        <Button>
+                            <Create color="primary" />
+                        </Button>
+                    </NavLink>
                 </TableCell>
                 <TableCell>
-                    <Button>
-                        <NavLink exact to={`/view-form-submissions/${row._id}`} style={styles.rowButton}>
-                            <Pageview color="primary"/>
-                        </NavLink>
-                    </Button>
+                    <NavLink exact to={`/view-form-submissions/${row._id}`} style={styles.rowButton}>
+                        <Button>
+                            <Pageview color="primary" />
+                        </Button>
+                    </NavLink>
                 </TableCell>
             </TableRow>
         )

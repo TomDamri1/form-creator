@@ -51,14 +51,12 @@ const App = () => {
     <div className="App">
       <AlertDialog dialogState={[dialogOpen, setDialogOpen]} message={dialogMessage} />
       <nav className='App-nav'>
-        <Button>
-          <NavLink exact className="link" activeClassName="active-link" to="/">View All Forms</NavLink>
-        </Button>
-        <Button>
-          <NavLink exact className="link" activeClassName="active-link" to="/form-builder-page">
-            Build a Form
-          </NavLink>
-        </Button>
+        <NavLink to="/">
+          <Button>View All Forms</Button>
+        </NavLink>
+        <NavLink to="/form-builder-page">
+          <Button>Build a Form</Button>
+        </NavLink>
       </nav>
       <div>
         <Switch>
