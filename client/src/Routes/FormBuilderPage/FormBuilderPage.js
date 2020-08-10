@@ -4,6 +4,7 @@ import { Button, TextField, CircularProgress } from '@material-ui/core';
 import { validateForm } from "./FormBuilderFunctions";
 import styles from "./FormBuilderStyles";
 import { publishFormToServer } from '../../functions/ServerConnectionFunctions';
+import Errors from '../../constants/Errors';
 
 
 const FormBuilderPage = (props) => {
@@ -27,7 +28,6 @@ const FormBuilderPage = (props) => {
         setFormFields(updatedFields);
     };
     const deleteField = (id) => {
-        alert(`id to delete : ${id}`)
         setFormFields(formFields.filter(field => field.id !== id))
     };
     const handleSubmit = async (evt) => {
@@ -36,7 +36,7 @@ const FormBuilderPage = (props) => {
         const formValidationStatus = validateForm(formName, formFields)
         if (formValidationStatus.status === false) {
             setIsLoading(false);
-            alert(formValidationStatus.message);
+            props.alertViaDialog(Errors.validationError, formValidationStatus.message);
             return;
         }
         let newFields = [];
@@ -50,8 +50,10 @@ const FormBuilderPage = (props) => {
         }
         const response = await publishFormToServer(form);
         setIsLoading(false);
-        alert(response);
-        props.history.push('/');
+        props.alertViaDialog("Message from server", response);
+        if (response !== Errors.internalServerError){
+            props.history.push('/');
+        }
     }
 
     const visualFields = formFields.map(field =>

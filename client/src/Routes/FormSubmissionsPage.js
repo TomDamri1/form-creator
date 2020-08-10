@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import FormSubmissionsTable from '../Components/FormSubmissionsTable/FormSubmissionsTable';
 import { getForm } from '../functions/ServerConnectionFunctions';
 import { CircularProgress } from '@material-ui/core';
+import Errors from '../constants/Errors';
 
 const getFormSubmissionsFromServer = async (id) => {
     const form = await getForm(id);
@@ -15,18 +16,18 @@ const FormSubmissionsPage = (props) => {
     useEffect(() => {
         (async () => {
             setIsLoading(true);
+            const alertViaDialog = props.alertViaDialog;
             const form = await getFormSubmissionsFromServer(props.match.params.id);
-            if (form === "Error") {
+            if (form === Errors.internalServerError) {
                 setIsLoading(false);
-                console.log("Error");
-                alert("Error, please refresh the page");
+                alertViaDialog(Errors.internalServerError,"Error, please refresh the page");
             }
             else {
                 setThisForm(form);
                 setIsLoading(false);
             }
         })()
-    }, [props.match.params.id])
+    }, [props.match.params.id, props.alertViaDialog])
     return (
         <>
             <h1>Form Submissions Page</h1>

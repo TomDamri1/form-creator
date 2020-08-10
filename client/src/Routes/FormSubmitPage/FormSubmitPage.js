@@ -3,6 +3,7 @@ import { Button, TextField, CircularProgress } from '@material-ui/core';
 import { validateInput, getInitialState, getFormFromServer } from './FormSubmitFunctions';
 import { postForm } from '../../functions/ServerConnectionFunctions';
 import styles from './FormSubmitStyles';
+import Errors from '../../constants/Errors';
 
 
 const FormSubmitPage = (props) => {
@@ -10,20 +11,22 @@ const FormSubmitPage = (props) => {
     const [thisForm, setThisForm] = useState({});
     const [formFields, setFormFields] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
     useEffect(() => {
         (async () => {
             const form = await getFormFromServer(props.match.params.id);
-            if (form === "Error") {
-
+            if (form === Errors.internalServerError) {
+                alert(Errors.error, form);
             }
             else {
-                setFormFields(form.fields)
+                setFormFields(form.fields);
                 setThisForm(form);
-                setFormState(getInitialState(form))
+                setFormState(getInitialState(form));
                 setIsLoading(false);
             }
-        })()
-    }, [props.match.params.id])
+        }
+        )()
+    }, [props.match.params.id]);
 
     const hanldeChange = (evt) => {
         setFormState({ ...formState, [evt.target.name]: evt.target.value })
@@ -32,9 +35,11 @@ const FormSubmitPage = (props) => {
         evt.preventDefault();
         setIsLoading(true);
         const response = await postForm(props.match.params.id, Object.values(formState))
-        alert(response);
+        props.alertViaDialog("Message from server", response);
         setIsLoading(false);
-        props.history.push('/')
+        if (response !== Errors.internalServerError) {
+            props.history.push('/')
+        }
     }
     const generateFields = (feilds) => {
         return feilds.map((field, index) => {
