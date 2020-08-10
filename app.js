@@ -3,7 +3,7 @@ const cors = require('cors');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const mongooseConfiguration = require('../mongooseConfiguration');
+const mongooseConfiguration = require('./mongooseConfiguration');
 
 const publishFormToServer = require('./routes/publishFormToServer');
 const getAllForms = require('./routes/getAllForms');
