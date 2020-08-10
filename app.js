@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const mongooseConfiguration = require('../mongooseConfiguration');
@@ -33,5 +34,6 @@ if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
 }
 
-
-module.exports = PORT;
+app.get('*', (req,res) => {
+    res.sendFile(path.join(`${__dirname}/client/build/index.html`));
+});
