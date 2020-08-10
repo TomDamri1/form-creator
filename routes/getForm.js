@@ -9,7 +9,8 @@ router.get('/:id', async (req, res) => {
         const forms = await Form.findOne({_id:id}).populate('fields');
         res.json(forms);
         console.log(`get-form ${id} status: done!`);
-    } catch (error) {
+    } 
+    catch (error) {
         console.log(`get-form status: ERROR`);
         return res.json({data : error})
     }

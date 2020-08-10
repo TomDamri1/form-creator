@@ -9,7 +9,8 @@ router.post('/:id', async (req, res) => {
         console.log("post-form status: done!");
         res.json({data : "done!"})
         
-    } catch (error) {
+    } 
+    catch (error) {
         console.log(error);
         console.log("post-form status: ERROR");
         return res.json({data : error})

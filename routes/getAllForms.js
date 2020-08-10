@@ -8,7 +8,8 @@ router.get('/', async (req, res) => {
         const forms = await Form.find();
         res.json(forms);
         console.log("get-all-forms status : done.")        
-    } catch (error) {
+    } 
+    catch (error) {
         console.log("get-all-forms status : ERROR.")        
         return res.json({data : error})
     }

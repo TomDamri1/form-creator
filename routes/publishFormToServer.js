@@ -15,7 +15,8 @@ const createFields = async (fields) => {
         try {
             await fieldData.save();
             fieldIdArray.push(fieldData._id);
-        } catch (error) {
+        } 
+        catch (error) {
             return "Error";
         }
     }
@@ -35,7 +36,8 @@ router.post('/', async (req, res) => {
         })
         const savedForm = await form.save();
         res.json({ data: "got it!", savedForm: savedForm });
-    } catch (error) {
+    } 
+    catch (error) {
         res.json({ data: error });
         console.log(error)
     }
