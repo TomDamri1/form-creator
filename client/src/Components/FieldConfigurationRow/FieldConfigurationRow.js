@@ -53,7 +53,6 @@ const FieldConfigurationRow = (props) => {
                 <MenuItem value="tel">Tel</MenuItem>
                 <MenuItem value="number">Number</MenuItem>
             </TextField>
-            <Button>{props.id}</Button>
             <Button
                 variant="contained"
                 color="secondary"
