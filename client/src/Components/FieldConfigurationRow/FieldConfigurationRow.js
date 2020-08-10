@@ -9,7 +9,7 @@ const FieldConfigurationRow = (props) => {
         inputName: "",
         inputType: "text",
     })
-    const hanldeChange = (evt) => {
+    const handleChange = (evt) => {
         setRowState({ ...rowState, [evt.target.name]: evt.target.value })
     }
     useEffect(() => {
@@ -25,7 +25,7 @@ const FieldConfigurationRow = (props) => {
                 label="Field Label"
                 color="secondary"
                 value={rowState.fieldLabel}
-                onChange={evt => hanldeChange(evt)}
+                onChange={evt => handleChange(evt)}
                 style={styles.rowItem}
             />
             <TextField
@@ -35,7 +35,7 @@ const FieldConfigurationRow = (props) => {
                 label="Input Name"
                 color="primary"
                 value={rowState.inputName}
-                onChange={evt => hanldeChange(evt)}
+                onChange={evt => handleChange(evt)}
                 style={styles.rowItem}
             />
             <TextField
@@ -44,7 +44,7 @@ const FieldConfigurationRow = (props) => {
                 label="Type"
                 value={rowState.inputType}
                 style={styles.rowItem}
-                onChange={evt => hanldeChange(evt)}
+                onChange={evt => handleChange(evt)}
                 select>
                 <MenuItem value="text">Text</MenuItem>
                 <MenuItem value="color">Color</MenuItem>

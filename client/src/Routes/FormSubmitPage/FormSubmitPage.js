@@ -28,7 +28,7 @@ const FormSubmitPage = (props) => {
         )()
     }, [props.match.params.id]);
 
-    const hanldeChange = (evt) => {
+    const handleChange = (evt) => {
         setFormState({ ...formState, [evt.target.name]: evt.target.value })
     }
     const handleSubmit = async (evt) => {
@@ -54,7 +54,7 @@ const FormSubmitPage = (props) => {
                         type={field.inputType}
                         style={styles.textField}
                         value={formState[field.inputName]}
-                        onChange={evt => hanldeChange(evt)}
+                        onChange={evt => handleChange(evt)}
                         variant="outlined"
                     />
                 </div>
