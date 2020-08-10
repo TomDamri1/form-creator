@@ -33,6 +33,14 @@ const FormSubmitPage = (props) => {
     }
     const handleSubmit = async (evt) => {
         evt.preventDefault();
+        for (let index = 0; index < formFields.length; index++) {
+            const field = formFields[index];
+            if (!validateInput(formState[field.inputName], field.inputType))
+            {
+                props.alertViaDialog("Validation Error", `please fill the field "${field.fieldLabel}" properly`);        
+                return;
+            }
+        }
         setIsLoading(true);
         const response = await postForm(props.match.params.id, Object.values(formState))
         props.alertViaDialog("Message from server", response);

@@ -1,4 +1,4 @@
-import { mailFormat, numberFormat } from "../../constants/Formats";
+import { mailFormat, numberFormat, telFormat } from "../../constants/Formats";
 import { getForm } from "../../functions/ServerConnectionFunctions";
 
 export const validateInput = (input, type) => { 
@@ -38,7 +38,7 @@ const validateColor = (input) => {
     return false;
 }
 
-const validateDate = () => {
+const validateDate = (input) => {
     return true;
 }
 
@@ -49,8 +49,11 @@ const validateEmail = (input) => {
     return false;
 }
 
-const validateTel = () => {
-    return true;
+const validateTel = (input) => {
+    if(input.match(telFormat)){
+        return true;
+    }
+    return false;
 }
 const validateNumber = (input) => {
     if(input.match(numberFormat)){
