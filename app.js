@@ -10,7 +10,7 @@ const getForm = require('./routes/getForm');
 const postForm = require('./routes/postForm');
 
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = 8000;
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(bodyParser.json());
@@ -22,9 +22,14 @@ app.use('/post-form', postForm)
 
 
 app.listen(PORT);
-mongoose.connect(...mongooseConfiguration);
+try {
+    mongoose.connect(...mongooseConfiguration);
+}
+catch (error) {
+    console.log("cannot connect to DB");
+}
 
-if (process.env.NODE_ENV === 'production'){
+if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'))
 }
 
