@@ -1,8 +1,9 @@
 import { createStyles } from '@material-ui/core';
+import Colors from '../../constants/Colors';
 
 export default createStyles({
     header: {
-        backgroundColor: "#3f50b5",
+        backgroundColor: Colors.primary,
     },
     cell: {
         color: "white"

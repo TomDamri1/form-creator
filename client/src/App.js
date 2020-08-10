@@ -7,7 +7,6 @@ import { Route, Switch, NavLink } from 'react-router-dom';
 import FormsListPage from './Routes/FormsListPage';
 import { Button } from '@material-ui/core';
 
-
 const App = () => {
   return (
     <div className="App">
@@ -16,7 +15,9 @@ const App = () => {
           <NavLink exact className="link" activeClassName="active-link" to="/">View All Forms</NavLink>
         </Button>
         <Button>
-          <NavLink exact className="link" activeClassName="active-link" to="/form-builder-page">Build a Form</NavLink>
+          <NavLink exact className="link" activeClassName="active-link" to="/form-builder-page">
+            Build a Form
+          </NavLink>
         </Button>
       </nav>
       <div>
