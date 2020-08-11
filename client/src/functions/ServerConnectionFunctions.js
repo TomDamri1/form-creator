@@ -3,7 +3,7 @@ import Errors from '../constants/Errors';
 
 
 const api = axios.create({
-    baseURL : process.env.baseURL || "http://localhost:8000",
+    baseURL : ''
 })
 
 
