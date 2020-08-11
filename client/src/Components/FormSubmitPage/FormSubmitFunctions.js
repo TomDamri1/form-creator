@@ -90,7 +90,7 @@ export const validateInput = (input, type) => {
 export const getInitialState = (form) => {
     let initialState = {};
     form.fields.map(field => 
-        initialState[field.inputName] = ''
+        field.inputType === "color" ? initialState[field.inputName] = '#000000' : initialState[field.inputName] = ''
     )
 
     return initialState;
