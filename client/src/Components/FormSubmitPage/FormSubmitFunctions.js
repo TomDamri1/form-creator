@@ -17,9 +17,9 @@ const validateText = (input) => {
 }
 
 const validateColor = (input) => {
-    console.log(`validate color, input : ${input}`)
-    if(input !== "")
-    return true;
+    if(input !== ""){
+        return true;
+    }
     return false;
 }
 
