@@ -6,4 +6,5 @@ to watch the website app.
 requirements : **NodeJS**  
 for using the application :  
 1. Clone the project  
-2. Use the command  `npm run install-and-run` inside the project directory
+2. Use the command  `npm run install-and-run` inside the project directory  
+3. Enjoy!
