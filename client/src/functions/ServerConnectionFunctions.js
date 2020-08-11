@@ -3,7 +3,7 @@ import Errors from '../constants/Errors';
 
 
 const api = axios.create({
-    baseURL :"https://tom-form-creator.herokuapp.com/",
+    baseURL : process.env.baseURL || "http://localhost:8000",
 })
 
 
