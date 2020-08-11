@@ -1,3 +1,10 @@
+import axios from 'axios';
+import Errors from '../../constants/Errors';
+
+
+const api = axios.create({
+    baseURL : ''
+})
 
 const validateFormFields = (formFields) => {
     if (formFields.length === 0) {
@@ -53,4 +60,15 @@ export const validateForm = (formName, formFields) => {
         validationStatus.message += fieldsWithTheSameNameValidation;
     }
     return validationStatus;
+}
+
+export const publishFormToServer = async (data) => {
+    try {
+        const response = await api.post('/newForm', data);
+        return response.data.data;
+    } 
+    catch (error) {
+        console.log(error)
+        return Errors.internalServerError;
+    }
 }

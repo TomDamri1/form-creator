@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Button, TextField, CircularProgress } from '@material-ui/core';
-import { validateInput, getInitialState, getFormFromServer } from './FormSubmitFunctions';
-import { postForm } from '../../functions/ServerConnectionFunctions';
+import { validateInput, getInitialState, getForm, postForm } from './FormSubmitFunctions';
 import styles from './FormSubmitStyles';
 import Errors from '../../constants/Errors';
 
@@ -11,10 +10,10 @@ const FormSubmitPage = (props) => {
     const [thisForm, setThisForm] = useState({});
     const [formFields, setFormFields] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-
+    const alertViaDialog = props.alertViaDialog; 
     useEffect(() => {
         (async () => {
-            const form = await getFormFromServer(props.match.params.id);
+            const form = await getForm(props.match.params.id);
             if (form === Errors.internalServerError) {
                 alert(Errors.error, form);
             }
@@ -35,15 +34,14 @@ const FormSubmitPage = (props) => {
         evt.preventDefault();
         for (let index = 0; index < formFields.length; index++) {
             const field = formFields[index];
-            if (!validateInput(formState[field.inputName], field.inputType))
-            {
-                props.alertViaDialog("Validation Error", `please fill the field "${field.fieldLabel}" properly`);        
+            if (!validateInput(formState[field.inputName], field.inputType)) {
+                alertViaDialog("Validation Error", `please fill the field "${field.fieldLabel}" properly`);
                 return;
             }
         }
         setIsLoading(true);
         const response = await postForm(props.match.params.id, Object.values(formState))
-        props.alertViaDialog("Message from server", response);
+        alertViaDialog("Message from server", response);
         setIsLoading(false);
         if (response !== Errors.internalServerError) {
             props.history.push('/')
@@ -97,7 +95,7 @@ const FormSubmitPage = (props) => {
 }
 
 
-export default FormSubmitPage
+export default FormSubmitPage;
 
 
 

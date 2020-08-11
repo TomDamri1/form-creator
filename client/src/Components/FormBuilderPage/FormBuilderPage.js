@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import FieldConfigurationRow from '../../Components/FieldConfigurationRow/FieldConfigurationRow';
+import FieldConfigurationRow from '../../Utilities/FieldConfigurationRow/FieldConfigurationRow';
 import { Button, TextField, CircularProgress } from '@material-ui/core';
-import { validateForm } from "./FormBuilderFunctions";
+import { validateForm, publishFormToServer } from "./FormBuilderFunctions";
 import styles from "./FormBuilderStyles";
-import { publishFormToServer } from '../../functions/ServerConnectionFunctions';
 import Errors from '../../constants/Errors';
+
 
 
 const FormBuilderPage = (props) => {
@@ -12,6 +12,7 @@ const FormBuilderPage = (props) => {
     const [formName, setFormName] = useState('');
     const [lastID, setLastID] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
+    const alertViaDialog = props.alertViaDialog;
     const AddField = () => {
         setFormFields([...formFields, { id: lastID }])
         setLastID(lastID + 1);
@@ -36,7 +37,7 @@ const FormBuilderPage = (props) => {
         const formValidationStatus = validateForm(formName, formFields)
         if (formValidationStatus.status === false) {
             setIsLoading(false);
-            props.alertViaDialog(Errors.validationError, formValidationStatus.message);
+            alertViaDialog(Errors.validationError, formValidationStatus.message);
             return;
         }
         let newFields = [];
@@ -50,8 +51,8 @@ const FormBuilderPage = (props) => {
         }
         const response = await publishFormToServer(form);
         setIsLoading(false);
-        props.alertViaDialog("Message from server", response);
-        if (response !== Errors.internalServerError){
+        alertViaDialog("Message from server", response);
+        if (response !== Errors.internalServerError) {
             props.history.push('/');
         }
     }
@@ -90,7 +91,7 @@ const FormBuilderPage = (props) => {
 
                     >
                         Add Field
-            </Button>
+                    </Button>
                     <Button
                         type="submit"
                         variant="contained"
@@ -99,7 +100,7 @@ const FormBuilderPage = (props) => {
 
                     >
                         Submit
-            </Button>
+                    </Button>
                 </form>
             }
             {
