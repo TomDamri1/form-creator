@@ -25,8 +25,7 @@ app.use('/post-form', postForm)
 app.listen(PORT);
 try {
     mongoose.connect(...mongooseConfiguration);
-    console.log(`listening on porn ${PORT}`)
-    console.log(`listening with the url ${process.env.baseURL}`)
+    console.log(`listening on port ${PORT}`)
 }
 catch (error) {
     console.log("cannot connect to DB");
