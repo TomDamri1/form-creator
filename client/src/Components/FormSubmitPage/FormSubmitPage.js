@@ -3,6 +3,7 @@ import { Button, TextField, CircularProgress } from '@material-ui/core';
 import { validateInput, getInitialState, getForm, postForm } from './FormSubmitFunctions';
 import styles from './FormSubmitStyles';
 import Errors from '../../constants/Errors';
+import Captcha from '../../Utilities/Captcha/Captcha';
 
 
 const FormSubmitPage = (props) => {
@@ -10,6 +11,7 @@ const FormSubmitPage = (props) => {
     const [thisForm, setThisForm] = useState({});
     const [formFields, setFormFields] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [captchaToken, setCaptchaToken ] = useState('')
     const alertViaDialog = props.alertViaDialog; 
     useEffect(() => {
         (async () => {
@@ -40,11 +42,14 @@ const FormSubmitPage = (props) => {
             }
         }
         setIsLoading(true);
-        const response = await postForm(props.match.params.id, Object.values(formState))
+        const response = await postForm(props.match.params.id, Object.values(formState), captchaToken)
         alertViaDialog("Message from server", response);
         setIsLoading(false);
-        if (response !== Errors.internalServerError) {
+        if (response !==  "R U a robot?! please check the captcha!" && response !== Errors.internalServerError) {
             props.history.push('/')
+        }
+        else {
+            console.log(response)
         }
     }
     const generateFields = (feilds) => {
@@ -89,6 +94,7 @@ const FormSubmitPage = (props) => {
                     </>
                 }
             </form>
+            <Captcha setCaptchaToken={setCaptchaToken}/>
 
         </>
     )

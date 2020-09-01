@@ -67,9 +67,13 @@ export const getForm = async (id) => {
     }
 }
 
-export const postForm = async (id, data) => {
+export const postForm = async (id, data, captchaToken) => {
     try {
-        const response = await api.post(`/form/${id}`, data);
+        const response = await api.post(`/form/${id}`, data, {
+            headers : {
+                'g-recaptcha-response' : captchaToken
+            }
+        });
         return response.data.data;
     } 
     catch (error) {
