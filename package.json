@@ -11,7 +11,7 @@
     "client-and-server": "concurrently 'npm run client' 'npm run start'",
     "install-and-run": "npm install; npm run install-client; npm run client-and-server",
     "heroku-postbuild": "npm run install-client; npm run build",
-    "start": "nodemon app.js"
+    "start": "nodem app.js"
   },
   "author": "TomDamri1",
   "license": "ISC",
